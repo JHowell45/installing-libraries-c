@@ -5,7 +5,7 @@ vector_t *newVector(size_t capacity)
     vector_t *vec = malloc(sizeof(vector_t));
     vec->capacity = capacity;
     vec->size = 0;
-    vec->items = NULL;
+    // vec->items = NULL;
 }
 void freeVector(vector_t *vec)
 {
@@ -20,6 +20,8 @@ void vector_append(vector_t *vec, void *item)
     if (vec->items == NULL) {
         vec->items = calloc(vec->capacity, sizeof(item));
     }
+    vec->items[vec->size] = item;
+    vec->size++;
 }
 void vector_pop(vector_t *vec)
 {
