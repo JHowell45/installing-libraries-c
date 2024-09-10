@@ -55,3 +55,27 @@ if(TARGET_GROUP STREQUAL test)
     target_link_libraries(${VECTOR_NAME}_test ${PROJECT_NAME} unity)
     add_test(${VECTOR_NAME}_test ${VECTOR_NAME}_test)
 endif()
+
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+install(FILES ${MY_HEADER_FILES} DESTINATION include)
+
+# ## Target installation
+# install(TARGETS   ${PROJECT_NAME}
+#     EXPORT        ${PROJECT_NAME}Targets
+#     ARCHIVE       DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#     LIBRARY       DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
+#     COMPONENT     library
+# )
+
+# ## Target's cmake files: targets export
+# install(EXPORT  ${PROJECT_NAME}Targets
+#     NAMESPACE   ${PROJECT_NAME}::
+#     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+# )
+
+# ## Target's cmake files: config and version config for find_package()
+# install(FILES   ${PROJECT_NAME}Config.cmake
+#                 ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+#     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+# )
