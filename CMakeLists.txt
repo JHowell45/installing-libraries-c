@@ -8,7 +8,7 @@ project(custom-lib)
 set(ROOT ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(SRC ${ROOT}/src)
 set(INCLUDE ${ROOT}/include)
-set(TESTS ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+set(TESTS ${ROOT}/tests)
 
 file(GLOB MY_SOURCE_FILES ${SRC}/*.c)
 file(GLOB MY_HEADER_FILES ${INCLUDE}/*.h)
@@ -33,3 +33,14 @@ FetchContent_MakeAvailable(unity)
 ####################################################################################
 add_library(${PROJECT_NAME} STATIC ${MY_SOURCE_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE})
+
+####################################################################################
+# Create Tests:
+####################################################################################
+include(CTest)
+
+set(VECTOR_TEST "vector")
+
+add_executable(${VECTOR_TEST}_test ${TESTS}/${VECTOR_TEST}.c)
+target_link_libraries(${VECTOR_TEST}_test ${PROJECT_NAME} unity)
+add_test(${VECTOR_TEST}_test ${VECTOR_TEST}_test)
