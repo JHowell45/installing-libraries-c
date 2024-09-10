@@ -12,10 +12,15 @@ int main(void)
         vector_append(v, i);
         printVector(v);
     }
-    freeVector(v);
 
-    vector_insert(v, 100, 3);
+    vector_insert(v, 100, 2);
     printVector(v);
 
+    for (int i = 0; i < MAX_VALUES / 2; i++) {
+        vector_remove(v, 0);
+        printVector(v);
+    }
+
+    freeVector(v);
     return 0;
 }
