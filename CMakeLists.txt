@@ -7,12 +7,15 @@ project(custom-lib)
 ####################################################################################
 set(ROOT ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(SRC ${ROOT}/src)
+set(EXAMPLES ${ROOT}/examples)
 set(INCLUDE ${ROOT}/include)
 set(TESTS ${ROOT}/tests)
 
 file(GLOB MY_SOURCE_FILES ${SRC}/*.c)
 file(GLOB MY_HEADER_FILES ${INCLUDE}/*.h)
 file(GLOB MY_TEST_FILES ${TESTS}/*.c)
+
+set(VECTOR_NAME "vector")
 
 ####################################################################################
 # Install Test Framework:
@@ -35,12 +38,16 @@ add_library(${PROJECT_NAME} STATIC ${MY_SOURCE_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE})
 
 ####################################################################################
+# Create Example Executables:
+####################################################################################
+add_executable(${VECTOR_NAME} ${EXAMPLES}/${VECTOR_NAME}.c)
+target_link_libraries(${VECTOR_NAME} ${PROJECT_NAME})
+
+####################################################################################
 # Create Tests:
 ####################################################################################
 include(CTest)
 
-set(VECTOR_TEST "vector")
-
-add_executable(${VECTOR_TEST}_test ${TESTS}/${VECTOR_TEST}.c)
-target_link_libraries(${VECTOR_TEST}_test ${PROJECT_NAME} unity)
-add_test(${VECTOR_TEST}_test ${VECTOR_TEST}_test)
+add_executable(${VECTOR_NAME}_test ${TESTS}/${VECTOR_NAME}.c)
+target_link_libraries(${VECTOR_NAME}_test ${PROJECT_NAME} unity)
+add_test(${VECTOR_NAME}_test ${VECTOR_NAME}_test)
