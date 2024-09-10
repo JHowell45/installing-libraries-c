@@ -20,7 +20,10 @@ void freeVector(vector_t *vec)
 
 void printVector(vector_t *vec)
 {
-    printf("[");
+    printf("Vector {\n");
+    printf("\tSize: %zu\n", vec->size);
+    printf("\tCapacity: %zu\n", vec->capacity);
+    printf("\tItems: [");
     for (int i = 0; i < vec->size; i++) {
         int value = vector_get(vec, i);
         if (i == 0) {
@@ -30,6 +33,7 @@ void printVector(vector_t *vec)
         }
     }
     printf("]\n");
+    printf("}\n");
 }
 
 void vector_append(vector_t *vec, int item)
