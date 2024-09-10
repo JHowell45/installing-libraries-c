@@ -5,10 +5,10 @@ project(custom-lib)
 ####################################################################################
 # Set Variables:
 ####################################################################################
-set(ROOT ${CMAKE_CURRENT_SOURCE_DIR}/graph)
+set(ROOT ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(SRC ${ROOT}/src)
 set(INCLUDE ${ROOT}/include)
-set(TESTS ${ROOT}/tests)
+set(TESTS ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 
 file(GLOB MY_SOURCE_FILES ${SRC}/*.c)
 file(GLOB MY_HEADER_FILES ${INCLUDE}/*.h)
