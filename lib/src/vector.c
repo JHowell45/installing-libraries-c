@@ -59,14 +59,18 @@ void vector_pop(vector_t *vec)
 void vector_insert(vector_t *vec, int item, size_t index)
 {
     resize_internal(vec);
-    // for (int i = vec->size - 1; i >= index; i--) {
-    //     vec->items[i + 1] = vec->items[i];
-    // }
+    for (int i = vec->size - 1; i >= index; i--) {
+        vec->items[i + 1] = vec->items[i];
+    }
     vec->items[index] = item;
     vec->size++;
 }
 void vector_remove(vector_t *vec, size_t index)
 {
+    for (int i = index; i < vec->size; i++) {
+        vec->items[i] = vec->items[i + 1];
+    }
+    vec->size--;
 }
 
 int vector_get(vector_t *vec, size_t index)
