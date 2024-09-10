@@ -36,12 +36,17 @@ void printVector(vector_t *vec)
     printf("}\n");
 }
 
-void vector_append(vector_t *vec, int item)
+void static resize_internal(vector_t *vec)
 {
     if (vec->size >= vec->capacity) {
         vec->capacity *= 2;
         vec->items = realloc(vec->items, vec->capacity * sizeof(int));
     }
+}
+
+void vector_append(vector_t *vec, int item)
+{
+    resize_internal(vec);
     vec->items[vec->size] = item;
     vec->size++;
 }
@@ -53,6 +58,12 @@ void vector_pop(vector_t *vec)
 }
 void vector_insert(vector_t *vec, int item, size_t index)
 {
+    resize_internal(vec);
+    // for (int i = vec->size - 1; i >= index; i--) {
+    //     vec->items[i + 1] = vec->items[i];
+    // }
+    vec->items[index] = item;
+    vec->size++;
 }
 void vector_remove(vector_t *vec, size_t index)
 {
