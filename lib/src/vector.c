@@ -34,9 +34,6 @@ void printVector(vector_t *vec)
 
 void vector_append(vector_t *vec, int item)
 {
-    // if (vec->items == NULL) {
-    //     vec->items = calloc(vec->capacity, sizeof(int));
-    // }
     if (vec->size >= vec->capacity) {
         vec->capacity *= 2;
         vec->items = realloc(vec->items, vec->capacity * sizeof(int));
