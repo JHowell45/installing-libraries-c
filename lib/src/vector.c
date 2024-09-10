@@ -5,7 +5,8 @@ vector_t *newVector(size_t capacity)
     vector_t *vec = malloc(sizeof(vector_t));
     vec->capacity = capacity;
     vec->size = 0;
-    // vec->items = NULL;
+    vec->items = calloc(vec->capacity, sizeof(int));
+    return vec;
 }
 void freeVector(vector_t *vec)
 {
