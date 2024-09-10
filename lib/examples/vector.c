@@ -14,5 +14,8 @@ int main(void)
     }
     freeVector(v);
 
+    vector_insert(v, 100, 3);
+    printVector(v);
+
     return 0;
 }
