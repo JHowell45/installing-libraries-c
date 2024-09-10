@@ -27,3 +27,9 @@ if (WIN32)
     add_definitions(-DUNITY_SUPPORT_64)
 endif (WIN32)
 FetchContent_MakeAvailable(unity)
+
+####################################################################################
+# Create Library:
+####################################################################################
+add_library(${PROJECT_NAME} STATIC ${MY_SOURCE_FILES})
+target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE})
